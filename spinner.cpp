@@ -28,11 +28,22 @@ void printSpin(int numberOfCycles, unsigned int microseconds)
 	}
 }
 
+void printSpinBuble(int numberOfCycles, unsigned int microseconds)
+{
+	for (int i = 0; i < numberOfCycles; i++)
+	{
+		printFrame('O', microseconds);
+		printFrame('o', microseconds);
+		printFrame('.', microseconds);
+		printFrame('o', microseconds);
+	}
+}
+
 int main(void)
 {
 	const unsigned int microseconds = 80;
 	const int numberOfCycles = 10;
-	printSpin(numberOfCycles, microseconds);
+	printSpinBuble(numberOfCycles, microseconds);
 
 	return 0;
 }
