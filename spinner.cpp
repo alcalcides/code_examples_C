@@ -55,11 +55,19 @@ void printSpinPort(int numberOfCycles, unsigned int microseconds)
 int main(void)
 {
 	int op;
-	cout << "1 - Spinner" << endl;
-	cout << "2 - Buble" << endl;
-	cout << "3 - Port" << endl;
-	cout << "Your order: ";
-	cin >> op;
+
+lll:
+	do
+	{
+		cout << endl;
+		cout << "1 - Spinner" << endl;
+		cout << "2 - Buble" << endl;
+		cout << "3 - Port" << endl;
+		cout << "0 - EXIT" << endl;
+		cout << "Your order: ";
+		cout.flush();
+		cin >> op;
+	} while (op < 0 || op > 3);
 
 	const unsigned int microseconds = 80;
 	const int numberOfCycles = 5;
@@ -73,11 +81,15 @@ int main(void)
 		printSpinBuble(numberOfCycles, microseconds);
 		break;
 	case 3:
-		printSpinPort(numberOfCycles, microseconds*2);
+		printSpinPort(numberOfCycles, microseconds * 2);
 		break;
 
 	default:
 		break;
 	}
+
+	if (op != 0)
+		goto lll;
+
 	return 0;
 }
