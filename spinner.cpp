@@ -52,11 +52,8 @@ void printSpinPort(int numberOfCycles, unsigned int microseconds)
 	cout << "\b\b\b\b\b";
 }
 
-int main(void)
-{
+int app () {
 	int op;
-
-lll:
 	do
 	{
 		cout << endl;
@@ -87,9 +84,15 @@ lll:
 	default:
 		break;
 	}
+	return op;
+}
 
-	if (op != 0)
-		goto lll;
+int main(void)
+{
+	int op;
+	do{
+		op = app();
+	} while(op != 0);
 
 	return 0;
 }
