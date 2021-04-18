@@ -1,8 +1,8 @@
-/*
-Implementação de lista encadeada simples 
-SEM head
+/**
+* Implementação de lista encadeada simples 
+* SEM head
 */
-
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -39,9 +39,11 @@ Elto* lookFor(List *lista, int value);
 Elto* lookForAnt(List *lista, int value);
 bool belong(List* lista, int value);
 
-/*
-A função newElto recebe os valores que compõem um nó e
-cria um nó com esses valores e retorna um ponteiro para o nó criado
+/**
+ * Cria um novo nó.
+ * 
+ * @param content é o conteúdo da nova célula
+ * @return ponteiro para a célula criada
 */
 Elto* newElto(int content){
     Elto *node = (Elto*)malloc(1*sizeof(Elto));
@@ -52,9 +54,11 @@ Elto* newElto(int content){
     return node;
 }
 
-/*
-Exibe os campos de um elemento
-Se o elemento não existir, exibe mensagem específica
+/**
+ * Exibe os campos de um elemento.
+ * Se o elemento não existir, exibe mensagem de erro.
+ * 
+ * @param elto é o ponteiro para a célula.
 */
 void displayElto(Elto *elto){
     if(elto){
@@ -67,18 +71,21 @@ void displayElto(Elto *elto){
     }
 }
 
-/*
-A função delElto recebe o ponteiro para um nó e o desaloca
-Retorna o valor NULL a ser atribuído, facultativamente, ao ponteiro.
+/**
+ * Desaloca uma célula.
+ * 
+ * @param elto é o ponteiro para a célula a ser desalocada.
+ * @return NULL a ser atribuído, sugestivamente, ao ponteiro.
 */
 Elto* delElto(Elto *elto){    
     free(elto);
     return NULL;
 }
 
-/*
-A função newListVazia cria uma lista vazia e
-retorna o ponteiro para a lista criada
+/**
+ * Cria uma lista vazia.
+ * 
+ * @return o ponteiro para a lista criada.
 */
 List* newList(){
     List *lista = (List*)malloc(1*sizeof(List));
@@ -86,34 +93,44 @@ List* newList(){
     lista->firstElto = NULL;
     return lista;
 }
-/*
-verifica se a lista está vazia
+
+/**
+ * Indica se a lista está vazia.
+ * 
+ * @param lista é o ponteiro da lista.
+ * @return true se a lista estiver vazia e falso caso contrário.
 */
 bool isEmptyList(List* lista){
-    bool vazio;
-    vazio = lista->numEltos == 0 ? true : false;
-    return vazio;
+    bool isEmpty;
+    isEmpty = lista->numEltos == 0 ? true : false;
+    return isEmpty;
 }
 
 
-/*
-Recebe um ponteiro para uma lista vazia e um 
-ponteiro para a primeira célula.
-Retorna true para indicar que houve inserção.
+/**
+ * Insere um célula no topo da lista.
+ * 
+ * @param lista é ponteiro para uma lista.
+ * @param pioneiro é ponteiro para a primeira nova célula.
+ * @return true se houver inserção e false caso contrário.
 */
 bool insertEltoTopList(List *lista, Elto *pioneiro){
-    bool inseriu = false;
+    bool inserido = false;
     pioneiro->next = lista->firstElto;   
     lista->firstElto = pioneiro;
     lista->numEltos++;
-    inseriu = true;
-    return inseriu;
+    inserido = true;
+    return inserido;
 }
 
-/*
-Recebe um ponteiro para uma lista não vazia, um ponteiro para uma célula e 
-um inteiro para a posição da célula anterior à célula a ser inserida.
-Retorna true para indicar que houve inserção.
+/**
+ * Insere, na lista não vazia, uma nova célula após 
+ * a célula indicada como sua anterior.
+ * 
+ * @param lista é ponteiro para a lista não vazia.
+ * @param anterior é o ponteiro para a célula anterior a nova célula.
+ * @param calouro é o ponteiro para a nova célula.
+ * @return true se houve a inserção e false caso contrário.
 */
 bool insertElto(List *lista, Elto* anterior, Elto* calouro){
     bool inseriu = false;
@@ -126,9 +143,11 @@ bool insertElto(List *lista, Elto* anterior, Elto* calouro){
     return inseriu;
 }
 
-/*
-Recebe um ponteiro para uma lista e 
-navega por ela mostrando seus elementos
+/**
+ * Mostra todos os elementos de uma lista.
+ * Se a lista estiver vazia, uma mensagem de erro é exibida.
+ * 
+ * @param lista é o ponteiro para a lista.
 */
 void displayList(List *lista){
     int i;
@@ -145,24 +164,25 @@ void displayList(List *lista){
     }
 }
 
-/*
-Recebe um ponteiro para uma lista e 
-exclui todos os seus elementos.
-Retorna true se houver sucesso
+/**
+ * Exclui todos os seus elementos da lista.
+ * 
+ * @param lista é o ponteiro para a lista.
+ * @return true após esvaziar a lista.
 */
 bool clearList(List *lista){
-    bool esvaziou = false;
     while(!isEmptyList(lista)){
         delTop(lista);
     }
-    esvaziou = lista->numEltos == 0 ? true : false;
-    return esvaziou;
+    return true;
 }
 
-/*
-Recebe um ponteiro para uma lista com pelo menos dois elementos
-e um ponteiro para o elemento anterior ao elemento alvo, 
-remove o elemento alvo e retorna true se bem sucedido.
+/**
+ * Remove o elemento alvo.
+ * 
+ * @param list é ponteiro para uma lista com pelo menos dois elementos.
+ * @param antAlvo é o ponteiro para o elemento anterior ao elemento a ser excluído.
+ * @return true se o elemento foi excluído da lista e false caso contrário.
 */
 bool delEltoList(List *lista, Elto *antAlvo){
     bool removeu = false;
@@ -176,10 +196,11 @@ bool delEltoList(List *lista, Elto *antAlvo){
     return removeu;
 }
 
-/*
-Recebe um ponteiro para uma lista e
-remove o primeiro elemento e 
-retorna true se bem sucedido.
+/**
+ * Exclui o primeiro elemento de uma lista não vazia.
+ * 
+ * @param lista é ponteiro para a lista.
+ * @return true se houve a exclusão ou false caso contrário.
 */
 bool delTop(List *lista){
     bool removeu = false;
@@ -194,11 +215,12 @@ bool delTop(List *lista){
 }
 
 
-/*
-Recebe um ponteiro para uma lista e 
-um valor a ser removido dela.
-Retorna true se houve a remoção ou
-false caso não haja item com conteúdo igual a value
+/**
+ * Exclui da lista o primeiro elemento encontrado com o determinado conteúdo.
+ * 
+ * @param list é o ponteiro para uma lista.
+ * @param value é o valor a ser removido da lista.
+ * @return true se houve a remoção ou false caso o valor procurado não esteja presente na lista.
 */
 bool delValue(List *lista, int value){
     bool removeu = false;
@@ -217,11 +239,12 @@ bool delValue(List *lista, int value){
     return removeu;
 }
 
-/*
-Esta função recebe um ponteiro para uma lista,
-desaloca todos os seus elementos da primeira posição para a última
-e, por fim, desaloca a lista e retorna NULL para, 
-facultativamente, atribuir no escopo pai
+/**
+ * Desaloca todos os seus elementos da primeira posição até a última e, 
+ * por fim, desaloca a lista.
+ * 
+ * @param lista é o ponteiro para uma lista.
+ * @return NULL 
 */
 List* delList (List *lista){
     while(!isEmptyList(lista)){
@@ -231,11 +254,13 @@ List* delList (List *lista){
     return NULL;
 }
 
-/*
-Recebe um ponteiro para uma lista e um inteiro pos que significa 
-uma posição do elemento na lista, de zero a [lista->numElto - 1],
-Retorna o ponteiro da célula que está na posição pos da lista ou
-NULL caso a lista seja menor do que infere pos
+/**
+ * Busca o elemento na posição pos.
+ * 
+ * @param lista é o ponteiro para uma lista 
+ * @param pos é a posição do elemento na lista, de zero a [lista->numElto - 1]
+ * @return o ponteiro da célula que está na posição pos da lista ou
+ * NULL caso a lista seja menor do que pos sugere
 */
 Elto* seek(List *lista, unsigned int pos){
     int i;
@@ -250,10 +275,13 @@ Elto* seek(List *lista, unsigned int pos){
     return alvo;
 }
 
-/*
-Recebe um ponteiro para uma lista e um valor.
-Retorna NULL caso não contenha um nó com o valor fornecido
-ou o ponteiro para o nó encontrado.
+/**
+ * Busca o primeiro elemento com o determinado conteúdo.
+ * 
+ * @param lista é o ponteiro para uma lista.
+ * @param value é o valor procurado. 
+ * @return ponteiro para o nó encontrado ou
+ * NULL para indicar que a lista não contém o valor pesquisado.
 */
 Elto* lookFor(List *lista, int value){
     Elto *temp = lista->firstElto;
@@ -265,11 +293,16 @@ Elto* lookFor(List *lista, int value){
     return temp;
 }
 
-/*
-Recebe um ponteiro para uma lista e um valor.
-Se houver o valor na lista e ele não estiver no primeiro nó, 
-retorno o ponteiro para o nó anterior. 
-Caso contrário, retorna NULL.
+/**
+ * Busca o elemento anterior ao que tem um determinado conteúdo.
+ * Se o elemento encontrado for o primeiro nó, o anterior é considerado NULL.
+ * O sucesso ocorre se houver o valor na lista em qualquer célula que seja a primeira.
+ * 
+ * @param lista é o ponteiro para uma lista.
+ * @param value é um valor procurado na lista.
+ * @return ponteiro para o nó anterior ao encontrado ou
+ * NULL caso não esteja presente na lista ou 
+ * NULL caso o valor procurado está no primeiro elemento da lista.
 */
 Elto* lookForAnt(List *lista, int value){
     Elto *anterior = lista->firstElto;
@@ -298,10 +331,12 @@ Elto* lookForAnt(List *lista, int value){
     return anterior;
 }
 
-/*
-Recebe um ponteiro para uma lista e um valor.
-Se houver elemento esse conteúdo, retorna true
-se não, retorna false
+/**
+ * Responde pela presença de determinado conteúdo na lista.
+ * 
+ * @param lista é o ponteiro para uma lista 
+ * @param value é um valor procurado.
+ * @return true se a lista contém o valor procura ou false caso contrário.
 */
 bool belong(List* lista, int value){
     bool existe;
