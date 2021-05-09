@@ -23,12 +23,12 @@ void copyVector(int *to, int *from, int sinceIndex, int untilIndex)
     }
 }
 
-void merge(int* source, int indexL0, int indexR0, int indexUntil){
+void merge(int* source, int indexL0, int indexLFinal, int indexUntil){
     int maxSign = 1000;
     
     int posInicialL = indexL0;
-    int posFinalL = indexR0 - 1;
-    int posInicialR = indexR0;
+    int posFinalL = indexLFinal;
+    int posInicialR = posFinalL + 1;
     int posFinalR = indexUntil;
 
     int sizeLeft = posFinalL - posInicialL + 2;
@@ -71,7 +71,7 @@ void mergeSort(int* source, int indexFrom, int indexUntil){
         int firstPosRight = lastPosLeft + 1;
         mergeSort(source, indexFrom, lastPosLeft);
         mergeSort(source, firstPosRight, indexUntil);
-        merge(source, indexFrom, firstPosRight, indexUntil);
+        merge(source, indexFrom, lastPosLeft, indexUntil);
     }
 }
 
