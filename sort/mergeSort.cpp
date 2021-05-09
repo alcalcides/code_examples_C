@@ -1,27 +1,8 @@
 #include <iostream>
+#include "../lib/printVector.h"
+#include "../lib/copyVector.h"
 
 using namespace std;
-
-void printVector(int *vector, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        cout << vector[i];
-        if (i < size - 1)
-            cout << " - ";
-    }
-    cout << endl;
-}
-
-void copyVector(int *to, int *from, int sinceIndex, int untilIndex)
-{
-    int j = 0;
-    for (int i = sinceIndex; i <= untilIndex; i++)
-    {
-        to[j] = from[i];
-        j++;
-    }
-}
 
 void merge(int* source, int indexL0, int indexLFinal, int indexUntil){
     int maxSign = 1000;
@@ -42,10 +23,6 @@ void merge(int* source, int indexL0, int indexLFinal, int indexUntil){
     
     copyVector(copyRight, source, posInicialR, posFinalR);
     copyRight[sizeRight-1] = maxSign;
-
-    // printVector(source, sizeOrigin);
-    // printVector(copyLeft, sizeLeft);
-    // printVector(copyRight, sizeRight);
 
     int cursorL = 0;
     int cursorR = 0;
