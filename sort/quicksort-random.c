@@ -3,16 +3,8 @@
 #include <time.h>
 #include "../lib/swap.h"
 #include "../lib/printVector.h"
+#include "../lib/randomize.h"
 
-void initializeRandomSeed()
-{
-    srand(time(NULL));
-}
-
-int randomize(int from, int until)
-{
-    return rand() % (until - from + 1) + from;
-}
 
 int partition(int *nums, int fromIndex, int untilIndex)
 {
