@@ -18,7 +18,7 @@ int main()
     cout << "nome[0] = " << nome[0] << endl;
     cout << "size of one elto = " << sizeof(nome[0]) << endl;
     cout << "sizeof(nome) = " << sizeof(nome) << endl;                      // '\0' was added
-    cout << "nome[its lenght] = " << nome[sizeof(nome)] << endl;            // thast is NUL
+    cout << "nome[its lenght] = " << nome[sizeof(nome)] << endl;            // '\0' was printed like NUL
     cout << "nome[its lenght] (int) = " << (int)nome[sizeof(nome)] << endl; // NUL is 0 in table ascii
     cout << "first data out = " << nome[sizeof(nome) + 1] << endl;          //trash!
     cout << "first data out = " << (int)nome[sizeof(nome) + 1] << endl

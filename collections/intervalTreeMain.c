@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "intervalTree.h"
+#include "../lib/intervalTree.h"
 
 int main() {
     int op;

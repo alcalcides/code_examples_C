@@ -18,12 +18,12 @@ int main()
     cout << name << endl << endl;
 
     char *p_name;
-    p_name = stringToChar("asdf", p_name);
+    p_name = stringToChar(name, p_name);
     cout << p_name << endl;
     cout << p_name[0] << endl;
     cout << sizeof(p_name) << endl;
     cout << sizeof(char) << endl;
-    cout << p_name[sizeof(p_name) - 4] << endl;
+    cout << sizeof(char *) << endl;
     cout << sizeof(p_name[0]) << endl;
     cout << &p_name << endl;
     cout << *(p_name + 0*sizeof(p_name[0])) << endl;

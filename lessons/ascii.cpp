@@ -15,6 +15,6 @@ int main (void) {
     printf("%d\n", 0x10);
     
     printf("%o\n", 8);
-    printf("%d\n", 010);
+    printf("%d\n", 010); // 0 at left is an octal number
     return 0;
 }
